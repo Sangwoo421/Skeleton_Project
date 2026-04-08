@@ -114,7 +114,6 @@ import { ref, computed, onMounted } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000';
 const route = useRoute();
 const userName = ref('');
 
@@ -122,7 +121,7 @@ const userInitial = computed(() => userName.value.charAt(0) || '?');
 
 onMounted(async () => {
   try {
-    const { data } = await axios.get(`${API_URL}/users`);
+    const { data } = await axios.get('/api/users');
     if (data.length > 0) userName.value = data[0].name;
   } catch (e) {
     console.error('사용자 정보를 불러올 수 없습니다:', e.message);

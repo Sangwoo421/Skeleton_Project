@@ -38,8 +38,6 @@ import { ref, computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000';
-
 const route = useRoute();
 const transactions = ref([]);
 
@@ -83,7 +81,7 @@ function formatAmount(amount) {
 
 onMounted(async () => {
   try {
-    const { data } = await axios.get(`${API_URL}/transactions`);
+    const { data } = await axios.get('/api/transactions');
     transactions.value = data;
   } catch (e) {
     console.error(
