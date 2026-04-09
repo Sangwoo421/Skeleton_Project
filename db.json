@@ -1,0 +1,86 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "name": "김멀티"
+    }
+  ],
+  "categories": [
+    {
+      "id": "c1",
+      "name": "식비",
+      "image": "/image/categories/food.png"
+    },
+    {
+      "id": "c2",
+      "name": "교통비",
+      "image": "/image/categories/transport.png"
+    },
+    {
+      "id": "c3",
+      "name": "유흥/취미",
+      "image": "/image/categories/hobby.png"
+    },
+    {
+      "id": "c4",
+      "name": "공과금",
+      "image": "/image/categories/utility.png"
+    },
+    {
+      "id": "c5",
+      "name": "의료",
+      "image": "/image/categories/medical.png"
+    },
+    {
+      "id": "c6",
+      "name": "쇼핑",
+      "image": "/image/categories/shopping.png"
+    },
+    {
+      "id": "c7",
+      "name": "교육",
+      "image": "/image/categories/education.png"
+    },
+    {
+      "id": "c8",
+      "name": "기타",
+      "image": "/image/categories/etc.png"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "t1",
+      "userId": "u1",
+      "type": "income",
+      "categoryId": "c1",
+      "title": "4월 월급",
+      "amount": 3200000,
+      "date": "2026-04-01",
+      "memo": "정기급여",
+      "fix": "true"
+    },
+    {
+      "id": "t2",
+      "userId": "u1",
+      "type": "expense",
+      "categoryId": "c3",
+      "title": "점심 - 한식당",
+      "amount": 12000,
+      "date": "2026-04-02",
+      "memo": "팀 점심",
+      "fix": "false"
+    },
+    {
+      "id": "t3",
+      "userId": "u1",
+      "type": "expense",
+      "categoryId": "c4",
+      "title": "지하철",
+      "amount": 1500,
+      "date": "2026-04-01",
+      "memo": "",
+      "fix": "false"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

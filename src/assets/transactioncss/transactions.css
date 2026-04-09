@@ -1,0 +1,140 @@
+/* 수입/지출 토글 */
+.toggle-btn.active {
+  border-bottom: 2px solid #333;
+}
+.toggle-btn {
+  border: none;
+  background: none;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 입력 */
+.field-input:focus {
+  border-color: #333 !important;
+  box-shadow: none !important;
+  background: #fff !important;
+}
+.field-input {
+  background: #fff;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  color: #000;
+}
+.amount-unit {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #666;
+  pointer-events: none;
+}
+
+/* 카테고리 */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.cat-item {
+  border: 1px solid #cfcfcf;
+  border-radius: 10px;
+  background: #fff;
+  min-height: 86px;
+  padding: 10px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.cat-item:hover {
+  border-color: #333;
+}
+.cat-item.selected {
+  border: 2px solid #333;
+}
+.cat-item.selected .cat-name {
+  font-weight: 500;
+}
+.cat-name {
+  font-size: 11px;
+  color: #666;
+  line-height: 1.2;
+  text-align: center;
+}
+.cat-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+/* 정기 토글 */
+.toggle-switch {
+  width: 40px;
+  height: 22px;
+  background: #ccc;
+  border-radius: 11px;
+  position: relative;
+  cursor: pointer;
+}
+.toggle-switch.on {
+  background: #666;
+}
+.toggle-knob {
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+.toggle-switch.on .toggle-knob {
+  left: 21px;
+}
+
+/* 버튼 */
+.btn-save {
+  background: #333;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+}
+.btn-save:hover {
+  background: #222;
+}
+
+/* 미리보기 금액 */
+.preview-amount {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.pr-key {
+  color: #666;
+  font-size: 12px;
+}
+.pr-val {
+  font-size: 12px;
+  font-weight: 500;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.preview-cat-img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.tx-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
