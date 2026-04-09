@@ -1,6 +1,21 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
+import { useRoute } from 'vue-router';
+// import Sidebar from '@/components/Sidebar.vue';
+import TopBar from '@/components/layout/TopBar.vue';
+
+const route = useRoute();
 </script>
+
 <template>
-  <router-view />
+  <div class="layout">
+    <!-- <Sidebar /> -->
+
+    <div class="main">
+      <!-- <TopBar :title="pageTitle" /> -->
+
+      <div class="content">
+        <router-view />
+      </div>
+    </div>
+  </div>
 </template>

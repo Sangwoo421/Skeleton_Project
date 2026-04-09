@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Transactions from '@/pages/Transactions.vue';
 import HistoryPage from '@/pages/HistoryPage.vue';
+import Setting from '@/pages/setting.vue';
 
 const routes = [
   {
-    path: '/',
+    path: '/transactions',
     name: 'transactions',
     component: Transactions,
   },
@@ -13,6 +14,11 @@ const routes = [
     name: 'history',
     component: HistoryPage,
   },
+  {
+      path: '/setting',
+      name: 'setting',
+      component: Setting,
+    },
 ];
 
 const router = createRouter({
