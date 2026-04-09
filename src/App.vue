@@ -3,7 +3,8 @@
     <!-- <Sidebar /> -->
 
     <div class="main">
-      <TopBar :title="pageTitle" />
+      <h2 class="title">설정</h2>
+      <!-- <TopBar :title="pageTitle" /> -->
 
       <div class="content">
         <router-view />
@@ -13,11 +14,9 @@
 </template>
 
 <script setup>
-// import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 // import Sidebar from '@/components/Sidebar.vue';
 import TopBar from '@/components/layout/TopBar.vue';
 
 const route = useRoute();
-// const pageTitle = computed(() => route.meta.title || '설정');
 </script>
