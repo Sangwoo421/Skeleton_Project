@@ -5,17 +5,44 @@
       "name": "김멀티"
     }
   ],
-
   "categories": [
-    { "id": "c1", "name": "월급", "type": "income", "color": "#4CAF50" },
-    { "id": "c2", "name": "용돈", "type": "income", "color": "#8BC34A" },
-
-    { "id": "c3", "name": "식비", "type": "expense", "color": "#F44336" },
-    { "id": "c4", "name": "교통비", "type": "expense", "color": "#2196F3" },
-    { "id": "c5", "name": "유흥/취미", "type": "expense", "color": "#9C27B0" },
-    { "id": "c6", "name": "공과금", "type": "expense", "color": "#FF9800" }
+    {
+      "id": "c1",
+      "name": "월급",
+      "type": "income",
+      "color": "#4CAF50"
+    },
+    {
+      "id": "c2",
+      "name": "용돈",
+      "type": "income",
+      "color": "#8BC34A"
+    },
+    {
+      "id": "c3",
+      "name": "식비",
+      "type": "expense",
+      "color": "#F44336"
+    },
+    {
+      "id": "c4",
+      "name": "교통비",
+      "type": "expense",
+      "color": "#2196F3"
+    },
+    {
+      "id": "c5",
+      "name": "유흥/취미",
+      "type": "expense",
+      "color": "#9C27B0"
+    },
+    {
+      "id": "c6",
+      "name": "공과금",
+      "type": "expense",
+      "color": "#FF9800"
+    }
   ],
-
   "transactions": [
     {
       "id": "t1",
@@ -24,7 +51,7 @@
       "categoryId": "c1",
       "title": "4월 월급",
       "amount": 3200000,
-      "date": "2026-04-01T09:00:00",
+      "date": "2026-04-01",
       "memo": "정기급여"
     },
     {
@@ -34,7 +61,7 @@
       "categoryId": "c3",
       "title": "점심 - 한식당",
       "amount": 12000,
-      "date": "2026-04-02T12:00:00",
+      "date": "2026-04-02",
       "memo": "팀 점심"
     },
     {
@@ -44,11 +71,10 @@
       "categoryId": "c4",
       "title": "지하철",
       "amount": 1500,
-      "date": "2026-04-01T08:30:00",
+      "date": "2026-04-01",
       "memo": ""
     }
   ],
-
   "fixedTransactions": [
     {
       "id": "f1",
