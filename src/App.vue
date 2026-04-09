@@ -1,7 +1,6 @@
-<template>
-  <Transactions />
-</template>
-
 <script setup>
-import Transactions from './pages/Transactions.vue';
+import { RouterLink, RouterView } from 'vue-router';
 </script>
+<template>
+  <router-view />
+</template>

@@ -57,7 +57,7 @@
       "amount": 3200000,
       "date": "2026-04-01",
       "memo": "정기급여",
-      "fix": "true"
+      "fix": true
     },
     {
       "id": "t2",
@@ -68,7 +68,7 @@
       "amount": 12000,
       "date": "2026-04-02",
       "memo": "팀 점심",
-      "fix": "false"
+      "fix": true
     },
     {
       "id": "t3",
@@ -79,8 +79,7 @@
       "amount": 1500,
       "date": "2026-04-01",
       "memo": "",
-      "fix": "false"
+      "fix": false
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }
