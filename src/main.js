@@ -1,4 +1,3 @@
-import './assets/main.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/transactioncss/transactions.css';
 
