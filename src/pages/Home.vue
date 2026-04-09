@@ -65,8 +65,8 @@
               text-overflow: ellipsis;
             "
           >
-            {{ tx.type === 'income' ? '+' : '-'
-            }}{{ formatAmount(tx.amount) }}원
+            {{ tx.type === 'income' ? '+' : '-' }}{{ formatAmount(tx.title) }}
+            {{ formatAmount(tx.amount) }}원
           </div>
         </div>
       </div>

@@ -42,7 +42,7 @@
 
       <!-- 거래 내역 -->
       <div class="mb-2">
-        <button
+        <!-- <button
           class="nav-item nav-item-dummy d-flex align-items-center gap-2 px-3 py-2 rounded-2 w-100 border-0"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -51,7 +51,21 @@
             <rect x="3" y="17" width="18" height="2" rx="1" />
           </svg>
           거래 내역
-        </button>
+        </button> -->
+        <RouterLink
+          to="/register"
+          class="nav-item d-flex align-items-center gap-2 px-3 py-2 rounded-2 text-decoration-none w-100"
+          :class="
+            route.name === 'register' ? 'nav-item-active' : 'nav-item-default'
+          "
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="3" y="5" width="18" height="2" rx="1" />
+            <rect x="3" y="11" width="18" height="2" rx="1" />
+            <rect x="3" y="17" width="18" height="2" rx="1" />
+          </svg>
+          거래 내역
+        </RouterLink>
       </div>
 
       <!-- 관리 -->

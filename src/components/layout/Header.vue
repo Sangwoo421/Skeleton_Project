@@ -21,15 +21,29 @@
       </div>
 
       <div class="d-flex flex-column align-items-center">
-        <span class="text-secondary" style="font-size: 12px">순수익</span>
+        <span class="text-secondary" style="font-size: 12px">이번 달 수익</span>
         <span
           class="fw-bold ms-5"
           :class="netProfit >= 0 ? 'text-success' : 'text-danger'"
         >
-          {{ netProfit >= 0 ? '+' : '' }}{{ formatAmount(netProfit) }}원
+          {{ netProfit >= 0 ? '+' : '-' }}{{ formatAmount(netProfit) }}원
         </span>
       </div>
     </div>
+    <button
+      class="btn rounded-circle fw-bold"
+      style="
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+        line-height: 1;
+        padding: 0;
+        background-color: orange;
+      "
+      @click="$router.push({ name: 'register' })"
+    >
+      +
+    </button>
   </header>
 </template>
 
