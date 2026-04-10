@@ -42,21 +42,11 @@
 
       <!-- 거래 내역 -->
       <div class="mb-2">
-        <!-- <button
-          class="nav-item nav-item-dummy d-flex align-items-center gap-2 px-3 py-2 rounded-2 w-100 border-0"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <rect x="3" y="5" width="18" height="2" rx="1" />
-            <rect x="3" y="11" width="18" height="2" rx="1" />
-            <rect x="3" y="17" width="18" height="2" rx="1" />
-          </svg>
-          거래 내역
-        </button> -->
         <RouterLink
           to="/history"
           class="nav-item d-flex align-items-center gap-2 px-3 py-2 rounded-2 text-decoration-none w-100"
           :class="
-            route.name === 'register' ? 'nav-item-active' : 'nav-item-default'
+            route.name === 'history' ? 'nav-item-active' : 'nav-item-default'
           "
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -71,8 +61,14 @@
       <!-- 관리 -->
       <div class="mb-2">
         <span class="d-block px-2 mb-1 nav-label">관리</span>
-        <button
-          class="nav-item nav-item-dummy d-flex align-items-center gap-2 px-3 py-2 rounded-2 w-100 border-0 mb-1"
+        <RouterLink
+          to="/transactions"
+          class="nav-item d-flex align-items-center gap-2 px-3 py-2 rounded-2 text-decoration-none w-100 mb-1"
+          :class="
+            route.name === 'transactions' || route.name === 'edit-transaction'
+              ? 'nav-item-active'
+              : 'nav-item-default'
+          "
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <rect
@@ -89,10 +85,14 @@
             <rect x="13" y="10" width="6" height="1.5" rx="0.75" />
             <rect x="13" y="13" width="4" height="1.5" rx="0.75" />
           </svg>
-          거래 등록
-        </button>
-        <button
-          class="nav-item nav-item-dummy d-flex align-items-center gap-2 px-3 py-2 rounded-2 w-100 border-0"
+          거래 등록 및 수정
+        </RouterLink>
+        <RouterLink
+          to="/setting"
+          class="nav-item d-flex align-items-center gap-2 px-3 py-2 rounded-2 text-decoration-none w-100"
+          :class="
+            route.name === 'setting' ? 'nav-item-active' : 'nav-item-default'
+          "
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <circle cx="12" cy="8" r="4" />
@@ -105,7 +105,7 @@
             />
           </svg>
           설정
-        </button>
+        </RouterLink>
       </div>
     </nav>
 

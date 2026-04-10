@@ -1,28 +1,28 @@
 <template>
-  <section class="profile-card">
-    <div class="sub-title">개인 설정</div>
+  <section class="card">
+    <p class="card-label">개인 설정</p>
 
-    <div class="content">
-      <div class="profile-avatar">
-        <div class="profile-avatar-circle">
-          {{ user?.name?.[0] || ' ' }}
-        </div>
+    <div class="profile-body">
+      <!-- 아바타 -->
+      <div class="avatar">
+        {{ user?.name?.[0] || ' ' }}
       </div>
 
+      <!-- 이름 영역 -->
       <div class="profile-info">
-        <div class="label">이름</div>
+        <div class="info-label">이름</div>
 
-        <div class="row">
-          <template v-if="!isEdit">
-            <div class="user-name">{{ user?.name }}</div>
-            <button class="btn btn-gray" @click="startEdit">수정</button>
-          </template>
+        <!-- 일반 상태 -->
+        <div v-if="!isEdit" class="info-row">
+          <input class="name-input" :value="user?.name" readonly />
+          <button class="btn btn-gray" @click="startEdit">수정</button>
+        </div>
 
-          <template v-else>
-            <input class="field-input" v-model="editName" />
-            <button class="btn btn-mint" @click="saveName">완료</button>
-            <button class="btn btn-gray" @click="cancelEdit">취소</button>
-          </template>
+        <!-- 수정 상태 -->
+        <div v-else class="info-row">
+          <input class="name-input" v-model="editName" />
+          <button class="btn btn-mint" @click="saveName">완료</button>
+          <button class="btn btn-gray" @click="cancelEdit">취소</button>
         </div>
       </div>
     </div>
@@ -34,13 +34,11 @@ import { computed, onMounted, ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 
 const store = useUserStore();
-
 const user = computed(() => store.user);
 
 const isEdit = ref(false);
 const editName = ref('');
 
-// 데이터 불러오기
 onMounted(async () => {
   try {
     await store.fetchUser();
@@ -49,22 +47,18 @@ onMounted(async () => {
   }
 });
 
-// 수정 시작
 const startEdit = () => {
   editName.value = user.value?.name ?? '';
   isEdit.value = true;
 };
 
-// 취소
 const cancelEdit = () => {
   isEdit.value = false;
 };
 
-// 저장
 const saveName = async () => {
   const trimmedName = editName.value.trim();
   if (!trimmedName) return;
-
   try {
     await store.updateUser(trimmedName);
     isEdit.value = false;
@@ -75,85 +69,102 @@ const saveName = async () => {
 </script>
 
 <style scoped>
-.profile-card {
-  padding: 20px;
+.card {
   background: #fff;
-  border-radius: 14px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  padding: 24px 28px;
 }
 
-/* 타이틀 */
-.sub-title {
-  margin-bottom: 16px;
-  font-weight: bold;
-  font-size: 16px;
+.card-label {
+  font-size: 15px;
+  color: #444;
+  margin: 0 0 20px;
 }
 
-/* 내부 레이아웃 */
-.content {
+/* 프로필 가로 배치 */
+.profile-body {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 24px;
 }
 
-.profile-avatar-circle {
-  width: 80px;
-  height: 80px;
+/* 아바타 원 */
+.avatar {
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   background: #e2a000;
   color: #fff;
+  font-size: 36px;
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
-  font-weight: bold;
+  flex-shrink: 0;
 }
 
-/* 오른쪽 */
+/* 우측 이름 영역 */
 .profile-info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* 라벨 */
-.label {
+.info-label {
   font-size: 13px;
-  color: #888;
-  margin-bottom: 6px;
+  color: #555;
 }
 
-/* 핵심: 가로 정렬 */
-.row {
+/* 이름 input + 버튼 가로 배치 */
+.info-row {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.user-name {
-  font-size: 18px;
-  font-weight: bold;
+/* 이름 input - 그림처럼 넓게 */
+.name-input {
+  flex: 1;
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #f5f5f5;
+  outline: none;
 }
 
-/* input */
-.field-input {
-  height: 36px;
-  padding: 0 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+.name-input:not([readonly]) {
+  background: #fff;
+  border-color: #aaa;
 }
 
 /* 버튼 */
 .btn {
-  height: 32px;
-  padding: 0 12px;
+  height: 42px;
+  padding: 0 20px;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  border: none;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-}
-
-.btn-mint {
-  background: #bfead7;
+  white-space: nowrap;
 }
 
 .btn-gray {
-  background: #eee;
+  background: #fff;
+  color: #333;
+}
+
+.btn-gray:hover {
+  background: #f0f0f0;
+}
+
+.btn-mint {
+  background: #d4f0d4;
+  color: #2d8a2d;
+  border-color: #d4f0d4;
 }
 </style>

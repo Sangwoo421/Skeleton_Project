@@ -13,64 +13,76 @@
       </button>
     </div>
 
-    <!-- 요일 헤더 -->
-    <div class="d-grid mb-1" style="grid-template-columns: repeat(7, 100px)">
-      <span
-        v-for="day in days"
-        :key="day"
-        class="text-center fw-semibold py-2"
-        :class="
-          day === '일'
-            ? 'text-danger'
-            : day === '토'
-              ? 'text-primary'
-              : 'text-secondary'
-        "
-        style="font-size: 13px"
-        >{{ day }}</span
-      >
-    </div>
-
-    <!-- 날짜 셀 -->
-    <div class="d-grid gap-2" style="grid-template-columns: repeat(7, 100px)">
-      <div
-        v-for="cell in calendarCells"
-        :key="cell.date"
-        class="rounded-3 p-2 calendar-cell"
-        :class="{ 'today-cell': cell.isToday }"
-        :style="!cell.isCurrentMonth ? 'opacity: 0.35;' : ''"
-      >
+    <!-- 캘린더 전체 컨테이너 -->
+    <div class="calendar-container mx-auto">
+      <!-- 요일 헤더 -->
+      <div class="d-grid mb-1 calendar-grid">
         <span
-          class="date-number"
+          v-for="day in days"
+          :key="day"
+          class="text-center fw-semibold py-2"
+          :class="
+            day === '일'
+              ? 'text-danger'
+              : day === '토'
+                ? 'text-primary'
+                : 'text-secondary'
+          "
+          style="font-size: 13px"
+          >{{ day }}</span
+        >
+      </div>
+
+      <!-- 날짜 셀 -->
+      <div class="d-grid gap-2 calendar-grid">
+        <div
+          v-for="cell in calendarCells"
+          :key="cell.date"
+          class="rounded-3 p-2 calendar-cell"
           :class="
             cell.isToday
-              ? 'today-badge'
-              : !cell.isCurrentMonth
-                ? 'text-secondary'
-                : ''
+              ? 'bg-warning bg-opacity-10 border border-warning border-2'
+              : 'bg-white border'
           "
-          >{{ cell.day }}</span
+          :style="!cell.isCurrentMonth ? 'opacity: 0.35;' : ''"
         >
-
-        <div v-if="cell.isCurrentMonth">
-          <div
-            v-for="tx in cell.transactions"
-            :key="tx.id + tx.date"
-            :class="tx.type === 'income' ? 'text-success' : 'text-danger'"
-            style="
-              font-size: 11px;
-              font-weight: 600;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
+          <span
+            class="date-number"
+            :class="
+              cell.isToday
+                ? 'd-inline-flex align-items-center justify-content-center rounded-circle bg-warning text-white fw-bold'
+                : !cell.isCurrentMonth
+                  ? 'text-secondary'
+                  : ''
+            "
+            :style="
+              cell.isToday ? 'width:24px; height:24px; font-size:12px;' : ''
             "
           >
-            {{ tx.type === 'income' ? '+' : '-' }}{{ formatAmount(tx.title) }}
-            {{ formatAmount(tx.amount) }}원
+            {{ cell.day }}
+          </span>
+
+          <div v-if="cell.isCurrentMonth">
+            <div
+              v-for="tx in cell.transactions"
+              :key="tx.id + tx.date"
+              :class="tx.type === 'income' ? 'text-success' : 'text-danger'"
+              style="
+                font-size: 11px;
+                font-weight: 600;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              "
+            >
+              {{ tx.type === 'income' ? '+' : '-' }}{{ formatAmount(tx.title) }}
+              {{ formatAmount(tx.amount) }}원
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <!-- calendar-container -->
   </div>
 </template>
 
@@ -192,3 +204,28 @@ onMounted(async () => {
   }
 });
 </script>
+
+<style scoped>
+.calendar-container {
+  width: 80%;
+  height: calc(100vh - 64px);
+}
+
+.calendar-grid {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-cell {
+  min-height: 120px;
+}
+
+.date-number {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.today-shadow {
+  box-shadow: 0 4px 12px rgba(245, 166, 35, 0.45);
+}
+</style>
