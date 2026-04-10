@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "u1",
-      "name": "김멀티"
+      "name": "가나다"
     }
   ],
   "categories": [
@@ -83,14 +83,58 @@
     },
     {
       "userId": "u1",
-      "categoryId": "c4",
+      "categoryId": "c2",
       "type": "expense",
-      "title": "123",
-      "amount": 5000,
+      "title": "12",
+      "amount": 12,
+      "date": "2026-04-10",
+      "memo": "21",
+      "fix": true,
+      "id": "fgba1Oh"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c1",
+      "type": "expense",
+      "title": "12",
+      "amount": 12,
       "date": "2026-04-10",
       "memo": "",
       "fix": false,
-      "id": "6ml4VDf"
+      "id": "5ihO4Vm"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c1",
+      "type": "expense",
+      "title": "13",
+      "amount": 13,
+      "date": "2026-04-10",
+      "memo": "",
+      "fix": false,
+      "id": "HRNOJf5"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c1",
+      "type": "expense",
+      "title": "14",
+      "amount": 14,
+      "date": "2026-04-10",
+      "memo": "",
+      "fix": false,
+      "id": "VfkEklC"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c1",
+      "type": "expense",
+      "title": "15",
+      "amount": 15,
+      "date": "2026-04-10",
+      "memo": "",
+      "fix": false,
+      "id": "mrJ35pC"
     }
   ]
 }

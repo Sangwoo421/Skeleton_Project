@@ -64,7 +64,7 @@
 
           <div v-if="cell.isCurrentMonth">
             <div
-              v-for="tx in cell.transactions"
+              v-for="tx in cell.transactions.slice(0, 3)"
               :key="tx.id + tx.date"
               :class="tx.type === 'income' ? 'text-success' : 'text-danger'"
               style="
@@ -77,6 +77,12 @@
             >
               {{ tx.type === 'income' ? '+' : '-' }}{{ formatAmount(tx.title) }}
               {{ formatAmount(tx.amount) }}원
+            </div>
+            <div
+              v-if="cell.transactions.length > 3"
+              style="font-size: 11px; color: #888; font-weight: 600"
+            >
+              +{{ cell.transactions.length - 3 }}개
             </div>
           </div>
         </div>
