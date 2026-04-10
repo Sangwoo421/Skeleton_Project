@@ -36,13 +36,6 @@ const deleteFixed = async (id) => {
   transactions.value = transactions.value.filter((v) => v.id !== id);
 };
 
-const updateFixed = async (item) => {
-  await axios.patch(`/api/transactions/${item.id}`, item);
-  transactions.value = transactions.value.map((v) =>
-    v.id === item.id ? item : v,
-  );
-};
-
 onMounted(() => {
   fetchCategories();
   fetchTransactions();
@@ -70,22 +63,18 @@ onMounted(() => {
 
       <!-- 고정 수입 / 고정 지출 -->
       <div class="fixed-wrapper">
-        <div>
-          <h3 class="section-title">저장된 고정 수입</h3>
-          <FixedList
-            :items="fixedIncome"
-            @delete="deleteFixed"
-            @edit="updateFixed"
-          />
-        </div>
-        <div>
-          <h3 class="section-title">저장된 고정 지출</h3>
-          <FixedList
-            :items="fixedExpense"
-            @delete="deleteFixed"
-            @edit="updateFixed"
-          />
-        </div>
+        <FixedList
+          title="저장된 고정 수입"
+          type="income"
+          :items="fixedIncome"
+          @delete="deleteFixed"
+        />
+        <FixedList
+          title="저장된 고정 지출"
+          type="expense"
+          :items="fixedExpense"
+          @delete="deleteFixed"
+        />
       </div>
     </section>
   </div>
