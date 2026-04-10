@@ -2,27 +2,36 @@
   <table class="table table-hover align-middle mb-0">
     <thead>
       <tr class="border-bottom border-2">
-        <th class="text-secondary fw-normal fs-6 pb-3" style="width: 120px">
+        <th class="text-secondary fw-normal fs-6 py-2" style="width: 120px">
           날짜
         </th>
-        <th class="text-secondary fw-normal fs-6 pb-3">내용</th>
-        <th class="text-secondary fw-normal fs-6 pb-3" style="width: 130px">
+        <th class="text-secondary fw-normal fs-6 py-2 text-center">내용</th>
+        <th
+          class="text-secondary fw-normal fs-6 py-2 text-center"
+          style="width: 120px"
+        >
           카테고리
         </th>
         <th
-          class="text-secondary fw-normal fs-6 pb-3 text-end"
+          class="text-secondary fw-normal fs-6 py-2 text-center"
           style="width: 150px"
         >
           금액
         </th>
         <th
-          class="text-secondary fw-normal fs-6 pb-3 text-center"
+          class="text-secondary fw-normal fs-6 py-2 text-center"
+          style="width: 100px"
+        >
+          고정
+        </th>
+        <th
+          class="text-secondary fw-normal fs-6 py-2 text-center"
           style="width: 90px"
         >
           구분
         </th>
         <th
-          class="text-secondary fw-normal fs-6 pb-3 text-center"
+          class="text-secondary fw-normal fs-6 py-2 text-center"
           style="width: 130px"
         >
           관리
@@ -44,21 +53,22 @@
         </td>
 
         <!-- 카테고리 -->
-        <td>
-          <span class="d-flex align-items-center gap-2">
-            <span
-              class="rounded-circle d-inline-block"
-              style="width: 10px; height: 10px; flex-shrink: 0"
-              :style="{ backgroundColor: getCategory(t.categoryId)?.color }"
-            />
-            <span class="fs-6">{{ getCategory(t.categoryId)?.name }}</span>
+        <td class="text-center fs-6">{{ getCategory(t.categoryId)?.name }}</td>
+
+        <!-- 금액 -->
+        <td class="text-center fw-semibold">
+          <span :class="t.type === 'expense' ? 'text-danger' : 'text-success'">
+            {{ t.type === 'expense' ? '-' : '+' }}{{ formatAmount(t.amount) }}
           </span>
         </td>
 
-        <!-- 금액 -->
-        <td class="text-end fw-semibold">
-          <span :class="t.type === 'expense' ? 'text-danger' : 'text-success'">
-            {{ t.type === 'expense' ? '-' : '+' }}{{ formatAmount(t.amount) }}
+        <!-- 고정 -->
+        <td class="text-center">
+          <span
+            v-if="t.fix"
+            class="badge rounded-pill bg-secondary-subtle text-secondary"
+          >
+            고정
           </span>
         </td>
 
@@ -74,7 +84,7 @@
 
         <!-- 관리 버튼 -->
         <td class="text-center">
-          <button class="btn btn-mint me-1" @click="$emit('edit', t.id)">
+          <button class="btn btn-mint me-2" @click="$emit('edit', t.id)">
             수정
           </button>
           <button class="btn btn-red" @click="$emit('delete', t.id)">
@@ -85,7 +95,7 @@
 
       <!-- 데이터 없을 때 -->
       <tr v-if="!transactions.length">
-        <td colspan="6" class="text-center text-muted py-5">
+        <td colspan="7" class="text-center text-muted py-5">
           거래 내역이 없습니다.
         </td>
       </tr>

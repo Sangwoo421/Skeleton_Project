@@ -78,7 +78,7 @@
       "amount": 50000,
       "date": "2026-04-10",
       "memo": "롤 스킨",
-      "fix": false,
+      "fix": true,
       "id": "DaIf430"
     },
     {
@@ -101,6 +101,7 @@
       "date": "2026-04-10",
       "memo": "",
       "fix": false,
+<<<<<<< HEAD
       "id": "5ihO4Vm"
     },
     {
@@ -135,6 +136,20 @@
       "memo": "",
       "fix": false,
       "id": "mrJ35pC"
+=======
+      "id": "6ml4VDf"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c4",
+      "type": "expense",
+      "title": "통신",
+      "amount": 5000,
+      "date": "2026-04-10",
+      "memo": "",
+      "fix": true,
+      "id": "B60KG_B"
+>>>>>>> b9a0a674f662d230e336a590e35782d1ed1da4d7
     }
   ]
 }
