@@ -8,7 +8,6 @@ import { useRouter, useRoute } from 'vue-router';
 const router = useRouter();
 
 const BASE = 'http://localhost:3000';
-const route = useRoute(); // ← 추가
 
 const categories = ref([]);
 const isRecurring = ref(false);

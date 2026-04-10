@@ -10,7 +10,9 @@
     <div v-for="item in items" :key="item.id" class="list-row">
       <span class="row-title">{{ item.title }}</span>
       <div class="row-actions">
-        <button class="btn btn-mint" @click="goToEdit(item)">수정</button>
+        <button class="btn btn-mint" @click="goToEdit(item.id)">
+          수정
+        </button>
         <button class="btn btn-red" @click="$emit('delete', item.id)">
           삭제
         </button>
@@ -44,8 +46,8 @@ const goToAdd = () => {
 };
 
 // 수정 버튼 → transactions 페이지로 이동 (item id 쿼리로 전달)
-const goToEdit = (item) => {
-  router.push({ name: 'transactions', query: { mode: 'edit', id: item.id } });
+const goToEdit = (id) => {
+  router.push({ name: 'edit-transaction', params: { id } });
 };
 </script>
 

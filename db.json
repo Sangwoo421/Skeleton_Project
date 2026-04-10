@@ -57,29 +57,40 @@
       "amount": 3200000,
       "date": "2026-04-01",
       "memo": "정기급여",
-      "fix": "true"
+      "fix": false
     },
     {
-      "id": "t2",
       "userId": "u1",
-      "type": "expense",
       "categoryId": "c3",
-      "title": "점심 - 한식당",
+      "type": "expense",
+      "title": "점심 - 양식당",
       "amount": 12000,
       "date": "2026-04-02",
       "memo": "팀 점심",
-      "fix": "false"
+      "fix": false,
+      "id": "t2"
     },
     {
-      "id": "t3",
       "userId": "u1",
+      "categoryId": "c3",
       "type": "expense",
+      "title": "게임",
+      "amount": 50000,
+      "date": "2026-04-10",
+      "memo": "롤 스킨",
+      "fix": false,
+      "id": "DaIf430"
+    },
+    {
+      "userId": "u1",
       "categoryId": "c4",
-      "title": "지하철",
-      "amount": 1500,
-      "date": "2026-04-01",
+      "type": "expense",
+      "title": "123",
+      "amount": 5000,
+      "date": "2026-04-10",
       "memo": "",
-      "fix": "false"
+      "fix": false,
+      "id": "6ml4VDf"
     }
   ]
 }
