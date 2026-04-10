@@ -10,27 +10,51 @@
 
       <!-- 이름 영역 -->
       <div class="profile-info">
-        <!-- 이름 라벨 + 버튼 한 줄 -->
+        <!-- 이름 라벨 (모바일: 라벨 옆에 버튼) -->
         <div class="label-row">
           <span class="info-label">이름</span>
 
-          <!-- 일반 상태: 수정 버튼 -->
+          <!-- 모바일에서만 보이는 버튼 -->
           <template v-if="!isEdit">
-            <button class="btn btn-gray btn-sm" @click="startEdit">수정</button>
+            <button class="btn btn-gray btn-sm mobile-btn" @click="startEdit">
+              수정
+            </button>
           </template>
-
-          <!-- 수정 상태: 완료/취소 버튼 -->
           <template v-else>
-            <button class="btn btn-mint btn-sm" @click="saveName">완료</button>
-            <button class="btn btn-gray btn-sm" @click="cancelEdit">
+            <button class="btn btn-mint btn-sm mobile-btn" @click="saveName">
+              완료
+            </button>
+            <button class="btn btn-gray btn-sm mobile-btn" @click="cancelEdit">
               취소
             </button>
           </template>
         </div>
 
-        <!-- input은 아래에 단독으로 -->
-        <input v-if="!isEdit" class="name-input" :value="user?.name" readonly />
-        <input v-else class="name-input" v-model="editName" />
+        <!-- input + 버튼 (데스크탑: input 옆에 버튼) -->
+        <div class="input-row">
+          <input
+            v-if="!isEdit"
+            class="name-input"
+            :value="user?.name"
+            readonly
+          />
+          <input v-else class="name-input" v-model="editName" />
+
+          <!-- 데스크탑에서만 보이는 버튼 -->
+          <template v-if="!isEdit">
+            <button class="btn btn-gray desktop-btn" @click="startEdit">
+              수정
+            </button>
+          </template>
+          <template v-else>
+            <button class="btn btn-mint desktop-btn" @click="saveName">
+              완료
+            </button>
+            <button class="btn btn-gray desktop-btn" @click="cancelEdit">
+              취소
+            </button>
+          </template>
+        </div>
       </div>
     </div>
   </section>
@@ -116,7 +140,6 @@ const saveName = async () => {
   gap: 8px;
 }
 
-/* 이름 라벨 + 버튼 한 줄 */
 .label-row {
   display: flex;
   align-items: center;
@@ -128,9 +151,15 @@ const saveName = async () => {
   color: #555;
 }
 
-/* input 단독 한 줄 */
+/* input + 버튼 가로 배치 */
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .name-input {
-  width: 100%;
+  flex: 1;
   height: 42px;
   padding: 0 14px;
   border: 1px solid #ddd;
@@ -147,31 +176,47 @@ const saveName = async () => {
 
 /* 버튼 공통 */
 .btn {
+  height: 42px;
+  padding: 0 20px;
   border-radius: 8px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
   border: 1px solid #ddd;
-}
-
-.btn-sm {
-  height: 30px;
-  padding: 0 12px;
+  flex-shrink: 0;
 }
 
 .btn-gray {
   background: #fff;
   color: #333;
 }
-
 .btn-gray:hover {
   background: #f0f0f0;
 }
-
 .btn-mint {
   background: #d4f0d4;
   color: #2d8a2d;
   border-color: #d4f0d4;
+}
+
+/* 기본: mobile-btn 숨김 */
+.mobile-btn {
+  display: none;
+}
+
+/* 모바일: desktop-btn 숨김, mobile-btn 보임 */
+@media (max-width: 991px) {
+  .desktop-btn {
+    display: none;
+  }
+
+  .mobile-btn {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
 }
 </style>
