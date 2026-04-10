@@ -6,31 +6,18 @@ import HistoryPage from '@/pages/HistoryPage.vue';
 import Setting from '@/pages/setting.vue';
 
 const routes = [
+  { path: '/', redirect: '/home' },
+  { path: '/home', name: 'home', component: Home },
+  { path: '/register', name: 'register', component: Register },
+  { path: '/transactions', name: 'transactions', component: Transactions },
   {
-    path: '/transactions',
-    name: 'transactions',
+    path: '/transactions/edit/:id',
+    name: 'edit-transaction',
     component: Transactions,
+    props: true,
   },
-  {
-    path: '/history',
-    name: 'history',
-    component: HistoryPage,
-  },
-  {
-    path: '/setting',
-    name: 'setting',
-    component: Setting,
-  },
-  {
-    path: '/',
-    name: 'home',
-    component: Home,
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: Register,
-  },
+  { path: '/history', name: 'history', component: HistoryPage },
+  { path: '/setting', name: 'setting', component: Setting },
 ];
 
 const router = createRouter({

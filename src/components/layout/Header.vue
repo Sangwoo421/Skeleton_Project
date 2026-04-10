@@ -3,7 +3,9 @@
     class="d-flex align-items-center px-4 bg-white border-bottom"
     style="height: 64px"
   >
-    <span class="fw-bold fs-5 text-dark">{{ pageTitle }}</span>
+    <span class="fw-bold fs-5 text-dark flex-shrink-0" style="width: 180px">
+      {{ pageTitle }}
+    </span>
 
     <div class="d-flex align-items-center justify-content-evenly flex-grow-1">
       <div class="d-flex flex-column align-items-center">
@@ -40,7 +42,7 @@
         padding: 0;
         background-color: orange;
       "
-      @click="$router.push({ name: 'register' })"
+      @click="$router.push({ name: 'transactions' })"
     >
       +
     </button>
@@ -58,9 +60,9 @@ const transactions = ref([]);
 const pageTitle = computed(() => {
   const titleMap = {
     home: '대시보드',
-    transactions: '거래 내역',
-    register: '거래 등록',
-    profile: '개인정보',
+    history: '거래 내역',
+    transactions: '거래 등록 및 수정',
+    setting: '설정',
   };
   return titleMap[route.name] ?? '대시보드';
 });
