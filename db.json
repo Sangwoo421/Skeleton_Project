@@ -2,14 +2,14 @@
   "users": [
     {
       "id": "u1",
-      "name": "가나다"
+      "name": "안상우"
     }
   ],
   "categories": [
     {
       "id": "c1",
-      "name": "식비",
-      "image": "/image/categories/food.png"
+      "name": "여행",
+      "image": "/image/categories/travel.png"
     },
     {
       "id": "c2",
@@ -48,8 +48,8 @@
     },
     {
       "id": "c9",
-      "name": "여행",
-      "image": "/image/categories/travel.png"
+      "name": "식비",
+      "image": "/image/categories/food.png"
     },
     {
       "id": "c10",
@@ -87,7 +87,7 @@
     },
     {
       "userId": "u1",
-      "categoryId": "c3",
+      "categoryId": "c2",
       "type": "expense",
       "title": "게임",
       "amount": 50000,
@@ -95,6 +95,17 @@
       "memo": "롤 스킨",
       "fix": true,
       "id": "DaIf430"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c3",
+      "type": "expense",
+      "title": "술",
+      "amount": 50000,
+      "date": "2026-04-21",
+      "memo": "파티",
+      "fix": false,
+      "id": "EmkYI3c"
     }
   ]
 }
