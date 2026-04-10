@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <h1>거래내역</h1>
+  <div class="container pt-3 pb-5">
     <HistoryFilter
       :filters="filters"
       :categories="categories"
+      :totalIncome="totalIncome"
+      :totalExpense="totalExpense"
       @update:filters="(val) => (filters = val)"
     />
     <HistoryTable
@@ -148,7 +149,7 @@ const formatAmount = (amount) => {
  * 수정 버튼
  */
 const handleEdit = (id) => {
-  router.push(`/history/edit/${id}`);
+  router.push({ name: 'edit-transaction', params: { id } });
 };
 
 /**

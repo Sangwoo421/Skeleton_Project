@@ -53,7 +53,7 @@
           거래 내역
         </button> -->
         <RouterLink
-          to="/register"
+          to="/history"
           class="nav-item d-flex align-items-center gap-2 px-3 py-2 rounded-2 text-decoration-none w-100"
           :class="
             route.name === 'register' ? 'nav-item-active' : 'nav-item-default'

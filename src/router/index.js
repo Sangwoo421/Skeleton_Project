@@ -6,8 +6,7 @@ import HistoryPage from '@/pages/HistoryPage.vue';
 import Setting from '@/pages/setting.vue';
 
 const routes = [
-  { path: '/', name: 'root', component: Home },
-  { path: '/home', name: 'home', component: Home },
+  { path: '/', name: 'home', component: Home },
   { path: '/register', name: 'register', component: Register },
   { path: '/transactions', name: 'transactions', component: Transactions },
   {

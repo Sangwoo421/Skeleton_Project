@@ -58,8 +58,8 @@ const transactions = ref([]);
 const pageTitle = computed(() => {
   const titleMap = {
     home: '대시보드',
-    transactions: '거래 내역',
-    register: '거래 등록',
+    history: '거래내역',
+    transactions: '거래 등록',
     profile: '개인정보',
   };
   return titleMap[route.name] ?? '대시보드';

@@ -1,46 +1,92 @@
 <template>
-  <table border="1" width="100%">
+  <table class="table table-hover align-middle mb-0">
     <thead>
-      <tr>
-        <th>날짜</th>
-        <th>내용</th>
-        <th>카테고리</th>
-        <th>금액</th>
-        <th>구분</th>
-        <th>관리</th>
+      <tr class="border-bottom border-2">
+        <th class="text-secondary fw-normal fs-6 pb-3" style="width: 120px">
+          날짜
+        </th>
+        <th class="text-secondary fw-normal fs-6 pb-3">내용</th>
+        <th class="text-secondary fw-normal fs-6 pb-3" style="width: 130px">
+          카테고리
+        </th>
+        <th
+          class="text-secondary fw-normal fs-6 pb-3 text-end"
+          style="width: 150px"
+        >
+          금액
+        </th>
+        <th
+          class="text-secondary fw-normal fs-6 pb-3 text-center"
+          style="width: 90px"
+        >
+          구분
+        </th>
+        <th
+          class="text-secondary fw-normal fs-6 pb-3 text-center"
+          style="width: 130px"
+        >
+          관리
+        </th>
       </tr>
     </thead>
 
     <tbody>
       <tr v-for="t in transactions" :key="t.id">
-        <td>{{ formatDate(t.date) }}</td>
+        <!-- 날짜 -->
+        <td class="text-muted small">{{ formatDate(t.date) }}</td>
 
+        <!-- 내용 -->
         <td>
-          <div>{{ t.title }}</div>
-          <div v-if="t.memo" style="font-size: 12px; color: gray">
+          <div class="fw-semibold">{{ t.title }}</div>
+          <div v-if="t.memo" class="text-muted" style="font-size: 12px">
             {{ t.memo }}
           </div>
         </td>
 
+        <!-- 카테고리 -->
         <td>
-          <span :style="{ color: getCategory(t.categoryId)?.color }">
-            {{ getCategory(t.categoryId)?.name }}
+          <span class="d-flex align-items-center gap-2">
+            <span
+              class="rounded-circle d-inline-block"
+              style="width: 10px; height: 10px; flex-shrink: 0"
+              :style="{ backgroundColor: getCategory(t.categoryId)?.color }"
+            />
+            <span class="fs-6">{{ getCategory(t.categoryId)?.name }}</span>
           </span>
         </td>
 
-        <td>
-          <span :style="{ color: t.type === 'expense' ? 'red' : 'green' }">
+        <!-- 금액 -->
+        <td class="text-end fw-semibold">
+          <span :class="t.type === 'expense' ? 'text-danger' : 'text-success'">
             {{ t.type === 'expense' ? '-' : '+' }}{{ formatAmount(t.amount) }}
           </span>
         </td>
 
-        <td>
-          {{ t.type === 'income' ? '수입' : '지출' }}
+        <!-- 구분 배지 -->
+        <td class="text-center">
+          <span
+            class="fs-6"
+            :class="t.type === 'income' ? 'text-success' : 'text-danger'"
+          >
+            {{ t.type === 'income' ? '수입' : '지출' }}
+          </span>
         </td>
 
-        <td>
-          <button @click="$emit('edit', t.id)">수정</button>
-          <button @click="$emit('delete', t.id)">삭제</button>
+        <!-- 관리 버튼 -->
+        <td class="text-center">
+          <button class="btn btn-mint me-1" @click="$emit('edit', t.id)">
+            수정
+          </button>
+          <button class="btn btn-red" @click="$emit('delete', t.id)">
+            삭제
+          </button>
+        </td>
+      </tr>
+
+      <!-- 데이터 없을 때 -->
+      <tr v-if="!transactions.length">
+        <td colspan="6" class="text-center text-muted py-5">
+          거래 내역이 없습니다.
         </td>
       </tr>
     </tbody>
@@ -49,12 +95,50 @@
 
 <script setup>
 defineProps({
-  transactions: Array,
-  categories: Array,
-  formatDate: Function,
-  formatAmount: Function,
-  getCategory: Function,
+  transactions: {
+    type: Array,
+    default: () => [],
+  },
+  getCategory: {
+    type: Function,
+    required: true,
+  },
+  formatDate: {
+    type: Function,
+    required: true,
+  },
+  formatAmount: {
+    type: Function,
+    required: true,
+  },
 });
 
 defineEmits(['edit', 'delete']);
 </script>
+
+<style scoped>
+.btn {
+  padding: 4px 14px;
+  border: none;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-mint {
+  background: #d4f0d4;
+  color: #2d8a2d;
+}
+
+.btn-gray {
+  background: #eee;
+  color: #555;
+}
+
+.btn-red {
+  background: #ffd6d6;
+  color: #c0392b;
+}
+</style>
