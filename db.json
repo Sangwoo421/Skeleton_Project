@@ -23,8 +23,8 @@
     },
     {
       "id": "c4",
-      "name": "헬스",
-      "image": "/image/categories/exercise.png"
+      "name": "교육",
+      "image": "/image/categories/education.png"
     },
     {
       "id": "c5",
@@ -38,8 +38,8 @@
     },
     {
       "id": "c7",
-      "name": "교육",
-      "image": "/image/categories/education.png"
+      "name": "헬스",
+      "image": "/image/categories/exercise.png"
     },
     {
       "id": "c8",
