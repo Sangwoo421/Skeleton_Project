@@ -9,10 +9,10 @@
     <!-- 목록 -->
     <div v-for="item in items" :key="item.id" class="list-row">
       <span class="row-title">{{ item.title }}</span>
+      <span class="row-amount">{{ item.amount.toLocaleString() }}원</span>
+
       <div class="row-actions">
-        <button class="btn btn-mint" @click="goToEdit(item.id)">
-          수정
-        </button>
+        <button class="btn btn-mint" @click="goToEdit(item.id)">수정</button>
         <button class="btn btn-red" @click="$emit('delete', item.id)">
           삭제
         </button>
@@ -41,7 +41,7 @@ const router = useRouter();
 const goToAdd = () => {
   router.push({
     name: 'transactions',
-    query: { mode: 'add', type: props.type },
+    query: { mode: 'add', type: props.type, fix: 'true' },
   });
 };
 

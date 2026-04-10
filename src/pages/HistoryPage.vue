@@ -31,6 +31,8 @@ import { useRouter } from 'vue-router';
 import Pagination from '@/components/history/Pagination.vue';
 import HistoryTable from '@/components/history/HistoryTable.vue';
 import HistoryFilter from '@/components/history/HistoryFilter.vue';
+import { useRoute } from 'vue-router';
+const route = useRoute();
 
 const router = useRouter();
 
@@ -41,8 +43,8 @@ const transactions = ref([]);
 
 // 필터 상태
 const filters = ref({
-  startDate: '',
-  endDate: '',
+  startDate: route.query.startDate || '',
+  endDate: route.query.startDate || '',
   categoryId: '',
   keyword: '',
   type: '',

@@ -2,14 +2,14 @@
   "users": [
     {
       "id": "u1",
-      "name": "조테스트"
+      "name": "안상우"
     }
   ],
   "categories": [
     {
       "id": "c1",
-      "name": "식비",
-      "image": "/image/categories/food.png"
+      "name": "여행",
+      "image": "/image/categories/travel.png"
     },
     {
       "id": "c2",
@@ -23,8 +23,8 @@
     },
     {
       "id": "c4",
-      "name": "공과금",
-      "image": "/image/categories/utility.png"
+      "name": "헬스",
+      "image": "/image/categories/exercise.png"
     },
     {
       "id": "c5",
@@ -45,6 +45,21 @@
       "id": "c8",
       "name": "기타",
       "image": "/image/categories/etc.png"
+    },
+    {
+      "id": "c9",
+      "name": "식비",
+      "image": "/image/categories/food.png"
+    },
+    {
+      "id": "c10",
+      "name": "공과금",
+      "image": "/image/categories/utility.png"
+    },
+    {
+      "id": "c11",
+      "name": "카페",
+      "image": "/image/categories/coffee.png"
     }
   ],
   "transactions": [
@@ -57,7 +72,7 @@
       "amount": 3200000,
       "date": "2026-04-01",
       "memo": "정기급여",
-      "fix": false
+      "fix": true
     },
     {
       "userId": "u1",
@@ -72,7 +87,7 @@
     },
     {
       "userId": "u1",
-      "categoryId": "c3",
+      "categoryId": "c2",
       "type": "expense",
       "title": "게임",
       "amount": 50000,
@@ -83,58 +98,14 @@
     },
     {
       "userId": "u1",
-      "categoryId": "c2",
+      "categoryId": "c3",
       "type": "expense",
-      "title": "12",
-      "amount": 12,
-      "date": "2026-04-10",
-      "memo": "21",
-      "fix": true,
-      "id": "fgba1Oh"
-    },
-    {
-      "userId": "u1",
-      "categoryId": "c1",
-      "type": "expense",
-      "title": "12",
-      "amount": 12,
-      "date": "2026-04-10",
-      "memo": "",
+      "title": "술",
+      "amount": 50000,
+      "date": "2026-04-21",
+      "memo": "파티",
       "fix": false,
-      "id": "5ihO4Vm"
-    },
-    {
-      "userId": "u1",
-      "categoryId": "c1",
-      "type": "expense",
-      "title": "13",
-      "amount": 13,
-      "date": "2026-04-10",
-      "memo": "",
-      "fix": false,
-      "id": "HRNOJf5"
-    },
-    {
-      "userId": "u1",
-      "categoryId": "c1",
-      "type": "expense",
-      "title": "14",
-      "amount": 14,
-      "date": "2026-04-10",
-      "memo": "",
-      "fix": false,
-      "id": "VfkEklC"
-    },
-    {
-      "userId": "u1",
-      "categoryId": "c1",
-      "type": "expense",
-      "title": "15",
-      "amount": 15,
-      "date": "2026-04-10",
-      "memo": "",
-      "fix": false,
-      "id": "mrJ35pC"
+      "id": "EmkYI3c"
     }
   ]
 }
