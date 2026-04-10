@@ -1,28 +1,33 @@
 <template>
-  <header class="topbar">
-    <h1 class="title">설정</h1>
-  </header>
+  <div class="topbar">
+    <span class="topbar-title">{{ title }}</span>
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+defineProps({
+  title: {
+    type: String,
+    default: '',
+  },
+});
+</script>
 
 <style scoped>
 .topbar {
-  height: 70px;
-  background: #ffffff;
-  border-bottom: 1px solid #ddd;
-
+  width: 100%;
+  height: 56px;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
   display: flex;
   align-items: center;
-  padding: 0 24px;
-
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  padding: 2rem 28px;
+  border-bottom: 1px solid black;
 }
 
-.title {
-  font-size: 20px;
-  font-weight: 800;
+.topbar-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 </style>

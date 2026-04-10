@@ -36,13 +36,6 @@ const deleteFixed = async (id) => {
   transactions.value = transactions.value.filter((v) => v.id !== id);
 };
 
-const updateFixed = async (item) => {
-  await axios.patch(`/api/transactions/${item.id}`, item);
-  transactions.value = transactions.value.map((v) =>
-    v.id === item.id ? item : v,
-  );
-};
-
 onMounted(() => {
   fetchCategories();
   fetchTransactions();
@@ -51,10 +44,10 @@ onMounted(() => {
 
 <template>
   <div class="setting-page">
-    <!-- 개인 설정: Profile 내부에 타이틀 포함되어 있으므로 card-label 제거 -->
+    <!-- 개인 설정 카드 -->
     <Profile />
 
-    <!-- 사용자 설정 -->
+    <!-- 사용자 설정 카드 -->
     <section class="card">
       <p class="card-label">사용자 설정</p>
 
@@ -68,27 +61,69 @@ onMounted(() => {
         />
       </div>
 
-      <hr class="divider" />
-
-      <!-- 고정 수입 / 고정 지출: 가로 2열 -->
+      <!-- 고정 수입 / 고정 지출 -->
       <div class="fixed-wrapper">
-        <div>
-          <h3 class="section-title">고정 수입</h3>
-          <FixedList
-            :items="fixedIncome"
-            @delete="deleteFixed"
-            @edit="updateFixed"
-          />
-        </div>
-        <div>
-          <h3 class="section-title">고정 지출</h3>
-          <FixedList
-            :items="fixedExpense"
-            @delete="deleteFixed"
-            @edit="updateFixed"
-          />
-        </div>
+        <FixedList
+          title="저장된 고정 수입"
+          type="income"
+          :items="fixedIncome"
+          @delete="deleteFixed"
+        />
+        <FixedList
+          title="저장된 고정 지출"
+          type="expense"
+          :items="fixedExpense"
+          @delete="deleteFixed"
+        />
       </div>
     </section>
   </div>
 </template>
+
+<style scoped>
+.setting-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+  background: #f5f5f5; /* 전체 배경 연회색 */
+  min-height: 100%;
+}
+
+/* 카드 */
+.card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  padding: 24px 28px;
+}
+
+.card-label {
+  font-size: 15px;
+  color: #444;
+  margin: 0 0 20px;
+}
+
+/* 섹션 블록 */
+.section-block {
+  margin: 0 24px;
+  padding: 0 0 2rem 0;
+}
+
+/* 섹션 타이틀 - 그림처럼 bold */
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 20px;
+}
+
+/* 고정 수입/지출 2열 */
+.fixed-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 60px;
+  margin: 0 24px;
+  padding: 0 0 2rem 0;
+}
+</style>

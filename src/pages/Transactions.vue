@@ -1,11 +1,13 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
+import { useRoute } from 'vue-router'; // ← 추가
 import axios from 'axios';
 import TransactionForm from '@/components/transactions/TransactionForm.vue';
 import TransactionPreview from '@/components/transactions/TransactionPreview.vue';
 import '@/assets/transactioncss/transactions.css';
 
 const BASE = 'http://localhost:3000';
+const route = useRoute(); // ← 추가
 
 const categories = ref([]);
 const isRecurring = ref(false);
@@ -18,13 +20,37 @@ const form = ref({
   categoryId: '',
   title: '',
   userId: 'u1',
-  fix: 'false',
+  fix: false,
 });
 
 onMounted(async () => {
+  // 카테고리 fetch
   const { data } = await axios.get(`${BASE}/categories`);
   categories.value = data;
-  form.value.date = new Date().toISOString().slice(0, 10);
+
+  // ── 수정 모드: query.id가 있으면 DB에서 해당 데이터 가져와서 폼에 자동 입력
+  if (route.query.id) {
+    const { data: item } = await axios.get(
+      `${BASE}/transactions/${route.query.id}`,
+    );
+    form.value = {
+      type: item.type,
+      date: item.date?.slice(0, 10), // "2026-04-01T09:00:00" → "2026-04-01"
+      amount: String(item.amount), // number → string (input용)
+      title: item.title,
+      memo: item.memo ?? '',
+      categoryId: item.categoryId ?? '',
+      userId: item.userId ?? 'u1',
+      fix: item.fix ?? false,
+    };
+    isRecurring.value = item.fix ?? false;
+  } else {
+    // 추가 모드: 오늘 날짜 + query.type 으로 수입/지출 자동 선택
+    form.value.date = new Date().toISOString().slice(0, 10);
+    if (route.query.type) {
+      form.value.type = route.query.type; // 'income' | 'expense'
+    }
+  }
 });
 
 const filteredCategories = computed(() => categories.value);
@@ -39,17 +65,33 @@ async function handleSubmit() {
     return alert('금액을 입력해주세요');
   if (!form.value.title) return alert('내용을 입력해주세요');
 
-  await axios.post(`${BASE}/transactions`, {
-    userId: form.value.userId,
-    categoryId: form.value.categoryId || null,
-    type: form.value.type,
-    amount: Number(form.value.amount),
-    date: form.value.date,
-    memo: form.value.memo,
-    fix: isRecurring.value,
-  });
+  // 수정 모드면 PATCH, 추가 모드면 POST
+  if (route.query.id) {
+    await axios.patch(`${BASE}/transactions/${route.query.id}`, {
+      userId: form.value.userId,
+      categoryId: form.value.categoryId || null,
+      type: form.value.type,
+      amount: Number(form.value.amount),
+      date: form.value.date,
+      memo: form.value.memo,
+      title: form.value.title,
+      fix: isRecurring.value,
+    });
+    alert('수정되었습니다');
+  } else {
+    await axios.post(`${BASE}/transactions`, {
+      userId: form.value.userId,
+      categoryId: form.value.categoryId || null,
+      type: form.value.type,
+      amount: Number(form.value.amount),
+      date: form.value.date,
+      memo: form.value.memo,
+      title: form.value.title,
+      fix: isRecurring.value,
+    });
+    alert('저장되었습니다');
+  }
 
-  alert('저장되었습니다');
   handleCancel();
 }
 
@@ -71,7 +113,7 @@ function handleCancel() {
 <template>
   <div class="p-4" style="padding: 16px">
     <div class="row g-3 align-items-start">
-      <!-- 수입/지출 등록  -->
+      <!-- 수입/지출 등록 -->
       <div class="col-8">
         <TransactionForm
           :form="form"
