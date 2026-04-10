@@ -118,35 +118,26 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import { useUserStore } from '@/stores/user';
-import axios from 'axios';
 
 defineEmits(['close']);
 
 const route = useRoute();
-<<<<<<< HEAD
-const userName = ref('');
-=======
 const store = useUserStore();
 
 const userName = computed(() => store.user?.name ?? '');
->>>>>>> 61b5cddc9b851d526c1ad9516fa202ce2b281f77
 const userInitial = computed(() => userName.value.charAt(0) || '?');
 
 onMounted(async () => {
-  try {
-    const { data } = await axios.get('/api/users');
-    if (data.length > 0) userName.value = data[0].name;
-  } catch (e) {
-    console.error('사용자 정보를 불러올 수 없습니다:', e.message);
+  if (!store.user) {
+    await store.fetchUser();
   }
 });
 </script>
 
 <style scoped>
-/* ── 기본 너비 ── */
 aside {
   width: 230px;
   min-height: 100vh;

@@ -32,6 +32,7 @@ import TransactionForm from '@/components/transactions/TransactionForm.vue';
 import TransactionPreview from '@/components/transactions/TransactionPreview.vue';
 import '@/assets/transactioncss/transactions.css';
 import { useRouter, useRoute } from 'vue-router';
+
 const router = useRouter();
 const route = useRoute();
 
@@ -57,22 +58,22 @@ onMounted(async () => {
   const { data: cats } = await axios.get(`${BASE}/categories`);
   categories.value = cats;
 
-  //  수정
+  // 수정 모드
   if (isEditMode.value) {
     const { data } = await axios.get(`${BASE}/transactions/${route.params.id}`);
     form.value = {
       type: data.type,
-      date: data.date,
-      amount: data.amount,
-      memo: data.memo,
-      categoryId: data.categoryId,
+      date: data.date?.slice(0, 10),
+      amount: String(data.amount),
+      memo: data.memo ?? '',
+      categoryId: data.categoryId ?? '',
       title: data.title,
-      userId: data.userId,
-      fix: data.fix,
+      userId: data.userId ?? 'u1',
+      fix: data.fix ?? false,
     };
-    isRecurring.value = data.fix;
+    isRecurring.value = data.fix ?? false;
   } else {
-    // 등록
+    // 등록 모드
     form.value.date = new Date().toISOString().slice(0, 10);
     if (route.query.type) form.value.type = route.query.type;
     if (route.query.fix === 'true') isRecurring.value = true;
@@ -104,14 +105,13 @@ const handleSubmit = async () => {
     };
 
     if (isEditMode.value) {
-      // 수정
       await axios.put(`${BASE}/transactions/${route.params.id}`, payload);
       alert('수정되었습니다');
     } else {
-      // 등록
       await axios.post(`${BASE}/transactions`, payload);
       alert('저장되었습니다');
     }
+
     setTimeout(() => {
       router.push('/history');
     }, 800);
@@ -125,54 +125,3 @@ const handleCancel = () => {
   router.back();
 };
 </script>
-<<<<<<< HEAD
-
-<template>
-  <div class="p-4" style="padding: 16px">
-    <div class="row g-3 align-items-start justify-content-center">
-      <!-- 수입/지출 등록  -->
-      <div class="col-12 col-lg-4">
-        <TransactionForm
-          :form="form"
-          :filtered-categories="filteredCategories"
-          :is-recurring="isRecurring"
-          @update:form="form = $event"
-          @update:is-recurring="isRecurring = $event"
-          @submit="handleSubmit"
-          @cancel="handleCancel"
-        />
-      </div>
-
-      <!-- 미리보기 -->
-      <div class="col-12 col-lg-3">
-        <TransactionPreview
-          :form="form"
-          :selected-category="selectedCategory"
-        />
-      </div>
-    </div>
-  </div>
-</template>
-
-<style scoped>
-@media (max-width: 991px) {
-  .category-grid {
-    grid-template-columns: 1fr;
-  }
-  .fixed-wrapper {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* 캘린더 */
-@media (max-width: 991px) {
-  .calendar-container {
-    width: 100%;
-  }
-  .calendar-cell {
-    min-height: 60px;
-  }
-}
-</style>
-=======
->>>>>>> 61b5cddc9b851d526c1ad9516fa202ce2b281f77
