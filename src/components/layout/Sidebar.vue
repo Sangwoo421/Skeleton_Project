@@ -126,11 +126,13 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
+import { useUserStore } from '@/stores/user';
 import axios from 'axios';
 
 const route = useRoute();
-const userName = ref('');
+const store = useUserStore();
 
+const userName = computed(() => store.user?.name ?? '');
 const userInitial = computed(() => userName.value.charAt(0) || '?');
 
 onMounted(async () => {

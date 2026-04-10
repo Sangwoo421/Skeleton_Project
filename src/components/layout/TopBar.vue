@@ -22,7 +22,6 @@ defineProps({
   display: flex;
   align-items: center;
   padding: 2rem 28px;
-  border-bottom: 1px solid black;
 }
 
 .topbar-title {
