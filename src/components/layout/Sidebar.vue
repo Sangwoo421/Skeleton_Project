@@ -120,12 +120,19 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
+import { useUserStore } from '@/stores/user';
 import axios from 'axios';
 
 defineEmits(['close']);
 
 const route = useRoute();
+<<<<<<< HEAD
 const userName = ref('');
+=======
+const store = useUserStore();
+
+const userName = computed(() => store.user?.name ?? '');
+>>>>>>> 61b5cddc9b851d526c1ad9516fa202ce2b281f77
 const userInitial = computed(() => userName.value.charAt(0) || '?');
 
 onMounted(async () => {

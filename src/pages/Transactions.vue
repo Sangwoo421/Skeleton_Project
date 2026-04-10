@@ -1,3 +1,30 @@
+<template>
+  <div class="p-4" style="padding: 16px">
+    <div class="row g-3 align-items-start justify-content-center">
+      <!-- 수입/지출 등록  -->
+      <div class="col-12 col-lg-4">
+        <TransactionForm
+          :form="form"
+          :filtered-categories="filteredCategories"
+          :is-recurring="isRecurring"
+          @update:form="form = $event"
+          @update:is-recurring="isRecurring = $event"
+          @submit="handleSubmit"
+          @cancel="handleCancel"
+        />
+      </div>
+
+      <!-- 미리보기 -->
+      <div class="col-12 col-lg-3">
+        <TransactionPreview
+          :form="form"
+          :selected-category="selectedCategory"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
@@ -98,6 +125,7 @@ const handleCancel = () => {
   router.back();
 };
 </script>
+<<<<<<< HEAD
 
 <template>
   <div class="p-4" style="padding: 16px">
@@ -146,3 +174,5 @@ const handleCancel = () => {
   }
 }
 </style>
+=======
+>>>>>>> 61b5cddc9b851d526c1ad9516fa202ce2b281f77

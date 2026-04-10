@@ -1,12 +1,3 @@
-<script setup>
-defineProps({
-  categories: { type: Array, default: () => [] },
-  modelValue: { type: String, default: '' },
-});
-
-defineEmits(['update:modelValue']);
-</script>
-
 <template>
   <div class="category-grid">
     <button
@@ -22,3 +13,12 @@ defineEmits(['update:modelValue']);
     </button>
   </div>
 </template>
+
+<script setup>
+defineProps({
+  categories: { type: Array, default: () => [] },
+  modelValue: { type: String, default: '' },
+});
+
+defineEmits(['update:modelValue']);
+</script>

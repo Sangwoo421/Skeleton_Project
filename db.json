@@ -2,19 +2,19 @@
   "users": [
     {
       "id": "u1",
-      "name": "가나다"
+      "name": "강두형"
     }
   ],
   "categories": [
     {
       "id": "c1",
-      "name": "식비",
-      "image": "/image/categories/food.png"
+      "name": "교통비",
+      "image": "/image/categories/transport.png"
     },
     {
       "id": "c2",
-      "name": "교통비",
-      "image": "/image/categories/transport.png"
+      "name": "카페",
+      "image": "/image/categories/coffee.png"
     },
     {
       "id": "c3",
@@ -48,8 +48,8 @@
     },
     {
       "id": "c9",
-      "name": "여행",
-      "image": "/image/categories/travel.png"
+      "name": "식비",
+      "image": "/image/categories/food.png"
     },
     {
       "id": "c10",
@@ -58,8 +58,8 @@
     },
     {
       "id": "c11",
-      "name": "카페",
-      "image": "/image/categories/coffee.png"
+      "name": "여행",
+      "image": "/image/categories/travel.png"
     }
   ],
   "transactions": [
@@ -87,7 +87,7 @@
     },
     {
       "userId": "u1",
-      "categoryId": "c3",
+      "categoryId": "c2",
       "type": "expense",
       "title": "게임",
       "amount": 50000,
@@ -95,6 +95,105 @@
       "memo": "롤 스킨",
       "fix": true,
       "id": "DaIf430"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c6",
+      "type": "expense",
+      "title": "밥",
+      "amount": 5000,
+      "date": "2026-04-01",
+      "memo": "",
+      "fix": false,
+      "id": "0MCHnBq"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c2",
+      "type": "expense",
+      "title": "교통비",
+      "amount": 5000,
+      "date": "2026-04-01",
+      "memo": "",
+      "fix": false,
+      "id": "huhheF0"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c6",
+      "type": "expense",
+      "title": "게임",
+      "amount": 20000,
+      "date": "2026-04-01",
+      "memo": "",
+      "fix": false,
+      "id": "YekQSlu"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c6",
+      "type": "expense",
+      "title": "편의점",
+      "amount": 2000,
+      "date": "2026-04-01",
+      "memo": "",
+      "fix": false,
+      "id": "kono4TB"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c1",
+      "type": "expense",
+      "title": "부산",
+      "amount": 20000,
+      "date": "2026-03-19",
+      "memo": "",
+      "fix": false,
+      "id": "FqY0O8V"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c2",
+      "type": "expense",
+      "title": "경주",
+      "amount": 10000,
+      "date": "2026-02-25",
+      "memo": "",
+      "fix": false,
+      "id": "KTTD1M2"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c2",
+      "type": "expense",
+      "title": "버스",
+      "amount": 20000,
+      "date": "2026-03-10",
+      "memo": "",
+      "fix": false,
+      "id": "nGJcg1G"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c8",
+      "type": "expense",
+      "title": "통신비",
+      "amount": 65000,
+      "date": "2026-04-15",
+      "memo": "",
+      "fix": true,
+      "id": "QBrGvNv"
+    },
+    {
+      "userId": "u1",
+      "categoryId": "c8",
+      "type": "expense",
+      "title": "테스트",
+      "amount": 50000,
+      "date": "2026-04-02",
+      "memo": "",
+      "fix": true,
+      "id": "yi646Bb"
     }
   ]
 }

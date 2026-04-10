@@ -1,34 +1,3 @@
-<script setup>
-import CategoryGrid from '@/components/transactions/CategoryGrid.vue';
-
-const props = defineProps({
-  form: { type: Object, required: true },
-  filteredCategories: { type: Array, default: () => [] },
-  isRecurring: { type: Boolean, default: false },
-});
-const emit = defineEmits([
-  'update:form',
-  'update:isRecurring',
-  'submit',
-  'cancel',
-]);
-
-function update(key, val) {
-  emit('update:form', { ...props.form, [key]: val });
-}
-function setType(type) {
-  emit('update:form', {
-    ...props.form,
-    type,
-    amount: '',
-    memo: '',
-    categoryId: '',
-    title: '',
-    fix: false,
-  });
-}
-</script>
-
 <template>
   <div class="tx-card p-4">
     <!-- 수입 / 지출 토글 -->
@@ -76,6 +45,19 @@ function setType(type) {
       </div>
     </div>
 
+    <!-- 정기 지출 토글 -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <span style="font-size: 16px; font-weight: 700; color: black">
+        {{ form.type === 'expense' ? '고정 지출' : '고정 수입' }}
+      </span>
+      <div
+        class="toggle-switch"
+        :class="{ on: isRecurring }"
+        @click="$emit('update:isRecurring', !isRecurring)"
+      >
+        <div class="toggle-knob"></div>
+      </div>
+    </div>
     <!-- 거래명 -->
     <div class="mb-3">
       <label class="form-label field-label">거래명</label>
@@ -109,18 +91,6 @@ function setType(type) {
       />
     </div>
 
-    <!-- 정기 지출 토글 -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <span style="font-size: 14px; color: black">정기 일정 등록</span>
-      <div
-        class="toggle-switch"
-        :class="{ on: isRecurring }"
-        @click="$emit('update:isRecurring', !isRecurring)"
-      >
-        <div class="toggle-knob"></div>
-      </div>
-    </div>
-
     <!-- 버튼 -->
     <div class="d-flex gap-2">
       <button class="btn-cancel-custom" @click="$emit('cancel')">취소</button>
@@ -128,3 +98,33 @@ function setType(type) {
     </div>
   </div>
 </template>
+<script setup>
+import CategoryGrid from '@/components/transactions/CategoryGrid.vue';
+
+const props = defineProps({
+  form: { type: Object, required: true },
+  filteredCategories: { type: Array, default: () => [] },
+  isRecurring: { type: Boolean, default: false },
+});
+const emit = defineEmits([
+  'update:form',
+  'update:isRecurring',
+  'submit',
+  'cancel',
+]);
+
+function update(key, val) {
+  emit('update:form', { ...props.form, [key]: val });
+}
+function setType(type) {
+  emit('update:form', {
+    ...props.form,
+    type,
+    amount: '',
+    memo: '',
+    categoryId: '',
+    title: '',
+    fix: false,
+  });
+}
+</script>

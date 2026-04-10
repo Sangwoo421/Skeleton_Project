@@ -11,9 +11,8 @@
     </button>
 
     <!-- 페이지 번호 -->
-
     <button
-      v-for="page in totalPages"
+      v-for="page in visiblePages"
       :key="page"
       class="btn btn-sm rounded-circle"
       style="width: 36px; height: 36px"
@@ -38,12 +37,23 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+
 const props = defineProps({
   currentPage: Number,
   totalPages: Number,
 });
 
 const emit = defineEmits(['update:currentPage']);
+
+const visiblePages = computed(() => {
+  const size = 5;
+  const start = Math.floor((props.currentPage - 1) / size) * size + 1;
+  const end = Math.min(start + size - 1, props.totalPages);
+  const pages = [];
+  for (let i = start; i <= end; i++) pages.push(i);
+  return pages;
+});
 
 const goPrev = () => {
   if (props.currentPage > 1) emit('update:currentPage', props.currentPage - 1);
