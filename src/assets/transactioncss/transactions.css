@@ -102,12 +102,12 @@
   width: 40px;
   height: 22px;
   background: #ccc;
-  border-radius: 11px;
+  border-radius: 14px;
   position: relative;
   cursor: pointer;
 }
 .toggle-switch.on {
-  background: #666;
+  background: #eaa000;
 }
 .toggle-knob {
   width: 16px;

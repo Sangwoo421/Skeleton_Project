@@ -1,10 +1,3 @@
-<script setup>
-defineProps({
-  form: { type: Object, required: true },
-  selectedCategory: { type: Object, default: null },
-});
-</script>
-
 <template>
   <div class="tx-card p-4" style="position: sticky; top: 20px">
     <!-- 금액 -->
@@ -77,3 +70,10 @@ defineProps({
     </div>
   </div>
 </template>
+
+<script setup>
+defineProps({
+  form: { type: Object, required: true },
+  selectedCategory: { type: Object, default: null },
+});
+</script>
