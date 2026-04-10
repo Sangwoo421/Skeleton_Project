@@ -47,10 +47,12 @@ onMounted(async () => {
   } else {
     // 등록
     form.value.date = new Date().toISOString().slice(0, 10);
+    if (route.query.type) form.value.type = route.query.type;
+    if (route.query.fix === 'true') isRecurring.value = true;
   }
 });
 
-const filteredCategories = computed(() => categories.value);
+const filteredCategories = computed(() => categories.value.slice(0, 8));
 
 const selectedCategory = computed(
   () => categories.value.find((c) => c.id === form.value.categoryId) || null,

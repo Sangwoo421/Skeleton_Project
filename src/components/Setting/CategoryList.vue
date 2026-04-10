@@ -43,6 +43,7 @@
 
 <script setup>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue';
+import axios from 'axios';
 
 const props = defineProps({
   categories: { type: Array, required: true },
@@ -81,12 +82,26 @@ const handleOutsideClick = (e) => {
 onMounted(() => document.addEventListener('click', handleOutsideClick));
 onUnmounted(() => document.removeEventListener('click', handleOutsideClick));
 
-const onSelectChange = (index, event) => {
+const onSelectChange = async (index, event) => {
   const selectedId = event.target.value;
   const newCat = props.categories.find((c) => c.id === selectedId);
   if (!newCat) return;
+
+  const currentCat = visibleCategories.value[index];
+
+  // DB에서 두 카테고리 이름 교체
+  await axios.patch(`/api/categories/${currentCat.id}`, {
+    name: newCat.name,
+    image: newCat.image,
+  });
+  await axios.patch(`/api/categories/${newCat.id}`, {
+    name: currentCat.name,
+    image: currentCat.image,
+  });
+
+  // 로컬도 반영
   const updated = [...visibleCategories.value];
-  updated[index] = newCat;
+  updated[index] = { ...currentCat, name: newCat.name };
   visibleCategories.value = updated;
   closeMenu();
 };
