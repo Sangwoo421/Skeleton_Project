@@ -45,6 +45,10 @@
               : 'bg-white border'
           "
           :style="!cell.isCurrentMonth ? 'opacity: 0.35;' : ''"
+          @click="
+            cell.isCurrentMonth &&
+            router.push({ name: 'history', query: { startDate: cell.date } })
+          "
         >
           <span
             class="date-number"
@@ -95,6 +99,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 const today = new Date();
 const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
@@ -102,6 +107,7 @@ const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart
 const year = ref(today.getFullYear());
 const month = ref(today.getMonth() + 1);
 const transactions = ref([]);
+const router = useRouter();
 
 const days = ['일', '월', '화', '수', '목', '금', '토'];
 
