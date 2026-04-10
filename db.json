@@ -23,8 +23,8 @@
     },
     {
       "id": "c4",
-      "name": "공과금",
-      "image": "/image/categories/utility.png"
+      "name": "헬스",
+      "image": "/image/categories/exercise.png"
     },
     {
       "id": "c5",
@@ -45,6 +45,21 @@
       "id": "c8",
       "name": "기타",
       "image": "/image/categories/etc.png"
+    },
+    {
+      "id": "c9",
+      "name": "여행",
+      "image": "/image/categories/travel.png"
+    },
+    {
+      "id": "c10",
+      "name": "공과금",
+      "image": "/image/categories/utility.png"
+    },
+    {
+      "id": "c11",
+      "name": "카페",
+      "image": "/image/categories/coffee.png"
     }
   ],
   "transactions": [

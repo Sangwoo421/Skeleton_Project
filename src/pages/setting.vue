@@ -63,18 +63,17 @@ onMounted(async () => {
         />
       </div>
 
-      <!-- 고정 수입 / 고정 지출 -->
       <div class="fixed-wrapper">
-        <FixedList
-          title="저장된 고정 수입"
-          type="income"
-          :items="fixedIncome"
-          @delete="deleteFixed"
-        />
         <FixedList
           title="저장된 고정 지출"
           type="expense"
           :items="fixedExpense"
+          @delete="deleteFixed"
+        />
+        <FixedList
+          title="저장된 고정 수입"
+          type="income"
+          :items="fixedIncome"
           @delete="deleteFixed"
         />
       </div>
@@ -88,7 +87,6 @@ onMounted(async () => {
   flex-direction: column;
   gap: 20px;
   padding: 24px;
-  background: #f5f5f5; /* 전체 배경 연회색 */
   min-height: 100%;
 }
 
