@@ -1,18 +1,7 @@
 <template>
   <aside class="d-flex flex-column flex-shrink-0 sidebar-bg">
-    <!-- 로고 -->
-    <div class="d-flex align-items-center gap-2 px-3 py-4">
-      <div
-        class="d-flex align-items-center justify-content-center rounded-2 fw-bold text-white flex-shrink-0 logo-badge"
-      >
-        KB
-      </div>
-      <div class="d-flex flex-column">
-        <span class="fw-bold text-white" style="font-size: 15px"
-          >KB 가계부</span
-        >
-        <span style="font-size: 11px; color: #8a90a8">IT's Your Life</span>
-      </div>
+    <div class="d-flex align-items-center justify-content-center px-3 py-4">
+      <img src="/image/logo/logo.png" alt="로고" class="logo-img" />
     </div>
 
     <!-- 네비게이션 -->
@@ -147,11 +136,10 @@ aside {
   background-color: #1e2235;
 }
 
-.logo-badge {
-  width: 40px;
-  height: 40px;
-  font-size: 13px;
-  background-color: #f5a623;
+.logo-img {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
 }
 
 .nav-label {

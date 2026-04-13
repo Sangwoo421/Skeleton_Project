@@ -63,8 +63,8 @@ const goToEdit = (id) => {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 4px;
-  width: 100%; /* ← 추가 */
-  flex-wrap: nowrap; /* ← 줄바꿈 방지 */
+  width: 100%;
+  flex-wrap: nowrap;
 }
 
 .list-title {

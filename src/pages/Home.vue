@@ -79,7 +79,7 @@
                 text-overflow: ellipsis;
               "
             >
-              {{ tx.type === 'income' ? '+' : '-' }}{{ formatAmount(tx.title) }}
+              {{ tx.type === 'income' ? '+' : '-' }}{{ tx.title }}
               {{ formatAmount(tx.amount) }}원
             </div>
             <div
@@ -92,7 +92,6 @@
         </div>
       </div>
     </div>
-    <!-- calendar-container -->
   </div>
 </template>
 
@@ -111,7 +110,7 @@ const router = useRouter();
 
 const days = ['일', '월', '화', '수', '목', '금', '토'];
 
-// 날짜별 거래 배열 맵 { 'YYYY-MM-DD': [tx, ...] }
+// 날짜별 거래 맵
 const txByDate = computed(() => {
   const map = {};
 
@@ -120,7 +119,7 @@ const txByDate = computed(() => {
     if (!map[dateKey]) map[dateKey] = [];
     map[dateKey].push(tx);
 
-    // 고정 거래는 현재 보는 달에도 표시
+    // ✅ fix: true인 거래는 현재 보는 달에도 같은 날짜에 표시
     if (tx.fix) {
       const txDate = new Date(tx.date);
       const txYear = txDate.getFullYear();
@@ -135,7 +134,10 @@ const txByDate = computed(() => {
         if (txDay <= lastDay) {
           const viewedKey = `${year.value}-${String(month.value).padStart(2, '0')}-${String(txDay).padStart(2, '0')}`;
           if (!map[viewedKey]) map[viewedKey] = [];
-          map[viewedKey].push({ ...tx, date: viewedKey });
+          // 이미 해당 달에 같은 id가 없을 때만 추가 (중복 방지)
+          if (!map[viewedKey].some((t) => t.id === tx.id)) {
+            map[viewedKey].push({ ...tx, date: viewedKey });
+          }
         }
       }
     }
@@ -148,10 +150,8 @@ const calendarCells = computed(() => {
   const firstDay = new Date(year.value, month.value - 1, 1).getDay();
   const lastDate = new Date(year.value, month.value, 0).getDate();
   const prevLastDate = new Date(year.value, month.value - 1, 0).getDate();
-
   const cells = [];
 
-  // 이전 달 빈 칸
   for (let i = firstDay - 1; i >= 0; i--) {
     cells.push({
       date: `prev-${i}`,
@@ -162,7 +162,6 @@ const calendarCells = computed(() => {
     });
   }
 
-  // 현재 달
   for (let d = 1; d <= lastDate; d++) {
     const dateKey = `${year.value}-${String(month.value).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
     cells.push({
@@ -174,7 +173,6 @@ const calendarCells = computed(() => {
     });
   }
 
-  // 다음 달 빈 칸
   const remaining = 42 - cells.length;
   for (let d = 1; d <= remaining; d++) {
     cells.push({
@@ -190,7 +188,7 @@ const calendarCells = computed(() => {
 });
 
 function formatAmount(amount) {
-  return amount.toLocaleString('ko-KR');
+  return Number(amount).toLocaleString('ko-KR');
 }
 
 function prevMonth() {
@@ -220,7 +218,6 @@ onMounted(async () => {
 <style scoped>
 .calendar-container {
   width: 80%;
-  height: calc(100vh - 64px);
 }
 
 .calendar-grid {
@@ -237,31 +234,17 @@ onMounted(async () => {
   margin-bottom: 4px;
 }
 
-.today-shadow {
-  box-shadow: 0 4px 12px rgba(245, 166, 35, 0.45);
-}
-
-@media (max-width: 991px) {
-  .category-grid {
-    grid-template-columns: 1fr;
-  }
-  .fixed-wrapper {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Home.vue에 추가 */
 @media (max-width: 991px) {
   .calendar-container {
     width: 100%;
   }
+
   .calendar-cell {
     min-height: 60px;
-    font-size: 10px; /* ← 추가: 텍스트 작게 */
-    padding: 4px !important; /* ← 추가: 패딩 줄임 */
+    font-size: 10px;
+    padding: 4px !important;
   }
 
-  /* 모바일에서 거래 텍스트 숨김 */
   .calendar-cell .text-success,
   .calendar-cell .text-danger {
     display: none;
